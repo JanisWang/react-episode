@@ -3,6 +3,7 @@ import ReactHtmlParser from 'react-html-parser';
 import FormatDate from '../functions/formatDate';
 import SortByDate from '../functions/sortByDate';
 import FormatEpisodeDescription from '../functions/formatEpisodeDescription';
+import ButtonActive from '../functions/buttonActive';
 import data from '../data.json';
 import '../index.scss';
 
@@ -20,11 +21,15 @@ function EpisodeItem(props) {
 
 // load episode list
 function ListEpisode(props) {
-    let episodes = data._embedded.episodes;
+    const episodes = data._embedded.episodes;
     let items = [];
-    episodes = SortByDate(episodes, props.sortType);
-    episodes.forEach(element => {
-        items.push(<EpisodeItem episode={element} />);
+    let newEpisodes = SortByDate(episodes, props.sortType);
+    newEpisodes.forEach(element => {
+        if (props.season === 0) {
+            items.push(<EpisodeItem episode={element} />);
+        } else if (element.season === props.season) {
+            items.push(<EpisodeItem episode={element} />);
+        }
     });
     return (
         <div id="episodes">
@@ -49,7 +54,7 @@ class EpisodeList extends Component {
         const seasonButtons = [];
         for(let i = 1; i<= 8; i++){
             seasonButtons.push(
-                <button className="button" key={i}>{i}</button>
+                <button className="button" key={i} onClick={() => this.setState({value: i}, ButtonActive(i))}>{i}</button>
             );
         }
         return (
@@ -63,7 +68,7 @@ class EpisodeList extends Component {
                         </select>
                     </header>
                     <div id="seasonBtn" className="seasons">
-                        <button className="button active">All</button>
+                        <button className="button active" onClick={() => this.setState({value: 0}, ButtonActive(0))}>All</button>
                         {seasonButtons}
                     </div>
 
