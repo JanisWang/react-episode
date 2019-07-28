@@ -22,7 +22,11 @@
     }
 
     .infoDetails {
-      margin-left: 0px;
+      margin-left: 0;
+
+      p {
+        margin-right: 0;
+      }
     }
   }
 } 
@@ -37,7 +41,7 @@
     }
 
     .infoDetails {
-      margin-left: 0px;
+      margin-left: 0;
     }
   }
 } 

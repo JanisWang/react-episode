@@ -1,7 +1,8 @@
-// return episode objects by name ASC/DESC
+// return episode objects by sort type (date or name) with order type (ASC/DESC)
 function SortEpisodeList(episodeList, sortType, order) {
 
     episodeList.sort(function(a, b) {
+        // default to sort by date ASC
         let nameA = a.airdate.toUpperCase();
         let nameB = b.airdate.toUpperCase();
         if (sortType === 'name') {
@@ -14,10 +15,10 @@ function SortEpisodeList(episodeList, sortType, order) {
         if (nameA > nameB) {
           return 1;
         }
-        // names must be equal
+        // when name values are equal
         return 0;
-      });
-    
+    });
+    // reverse sorted episodeList when order by DESC
     if (order === 'desc') {
         episodeList.reverse();
     }
