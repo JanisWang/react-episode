@@ -20,7 +20,6 @@ function MovieInfo() {
         <source srcSet={imageUrlMedium} media="(min-width: 769px)" />
         <img src= {imageUrlOriginal} alt={name}/>
       </picture>
-
       <div className="infoDetails">
         <h1>{name}</h1>
         <p className="info">Genre: {genre} | Rating: {rating}</p>
