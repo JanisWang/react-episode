@@ -1,0 +1,53 @@
+h1, h2, body, p, button {
+    font-style: normal;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: $description-color;
+}
+
+h1, h2 {
+    color: $title-color;
+    font-size: 36px;
+    margin: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    padding: 10px 5px;
+}
+
+body {
+    margin: 50px 80px;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+img {
+    object-fit: cover;
+}
+
+.button {
+    margin: 5px;
+    padding: 5px 15px;
+    text-decoration: none;
+    border: 1px solid $button-border;
+    border-radius: 5px;
+    background-color: transparent;
+
+    &:visited {
+        color: $themeBlue;
+    }
+
+    &.active, &:focus {
+        color: $white;
+        background-color: $themeBlue;
+    }
+}
+
+.info {
+    color: $info-color;
+  }

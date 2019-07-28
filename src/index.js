@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import PageLoad from './components/PageLoad'
 import * as serviceWorker from './components/serviceWorker';
 
 ReactDOM.render(
-    <div>Hello world</div>,
+    <PageLoad />,
     document.querySelector('#root')
 );
 
