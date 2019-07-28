@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactHtmlParser from 'react-html-parser';
 import FormatDate from '../functions/formatDate';
+import SortByDate from '../functions/sortByDate';
+import FormatEpisodeDescription from '../functions/formatEpisodeDescription';
 import data from '../data.json';
 import '../index.scss';
 
@@ -10,19 +12,19 @@ function EpisodeItem(props) {
         <a className="card" href={props.episode.url} key={props.episode.id}>
             <div><img src={props.episode.image.medium} alt={props.episode.name} /></div>
             <div className="episodeTitle">{props.episode.name}</div>
-            <div>{ReactHtmlParser(props.episode.summary)}</div>
+            <div>{ReactHtmlParser(FormatEpisodeDescription(props.episode.summary))}</div>
             <div className="info">Date: {FormatDate(props.episode.airdate)} | Season: {props.episode.season} | Episode: {props.episode.number}</div>
         </a>
     );
 }
 
 // load episode list
-function ListEpisode() {
-    const items = [];
+function ListEpisode(props) {
     let episodes = data._embedded.episodes;
-    
+    let items = [];
+    episodes = SortByDate(episodes, props.sortType);
     episodes.forEach(element => {
-       items.push(<EpisodeItem episode={element} />);
+        items.push(<EpisodeItem episode={element} />);
     });
     return (
         <div id="episodes">
@@ -55,7 +57,7 @@ class EpisodeList extends Component {
                 <div id="seasons">
                     <header>
                         <h2>Seasons</h2>
-                        <select>
+                        <select onChange={(e) => this.setState({ sortType: e.target.value })}>
                             <option value="asc">Sort by date ⥣ </option>
                             <option value="desc">Sort by date ⥥ </option>
                         </select>
@@ -66,7 +68,7 @@ class EpisodeList extends Component {
                     </div>
 
                 </div>
-                <ListEpisode />
+                <ListEpisode season={this.state.value} sortType={this.state.sortType}/>
             </section>
         );
     }
