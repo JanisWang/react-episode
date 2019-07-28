@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactHtmlParser from 'react-html-parser';
 import FormatDate from '../functions/formatDate';
-import SortByDate from '../functions/sortByDate';
+import SortEpisodeList from '../functions/sortEpisodeList';
 import FormatEpisodeDescription from '../functions/formatEpisodeDescription';
 import ButtonActive from '../functions/buttonActive';
 import data from '../data.json';
@@ -23,7 +23,7 @@ function EpisodeItem(props) {
 function ListEpisode(props) {
     const episodes = data._embedded.episodes;
     let items = [];
-    let newEpisodes = SortByDate(episodes, props.sortType);
+    let newEpisodes = SortEpisodeList(episodes, props.sortType, props.order);
     newEpisodes.forEach(element => {
         if (props.season === 0) {
             items.push(<EpisodeItem episode={element} />);
@@ -46,7 +46,8 @@ class EpisodeList extends Component {
         super(props);
         this.state = {
           value: 0,
-          sortType: 'asc',
+          sortType: 'date',
+          order: 'asc',
         };
     }
 
@@ -63,8 +64,12 @@ class EpisodeList extends Component {
                     <header>
                         <h2>Seasons</h2>
                         <select onChange={(e) => this.setState({ sortType: e.target.value })}>
-                            <option value="asc">Sort by date ⥣ </option>
-                            <option value="desc">Sort by date ⥥ </option>
+                            <option value="date">Sort by date</option>
+                            <option value="name">Sort by Name</option>
+                        </select>
+                        <select onChange={(e) => this.setState({ order: e.target.value })}>
+                            <option value="asc">⥣</option>
+                            <option value="desc">⥥</option>
                         </select>
                     </header>
                     <div id="seasonBtn" className="seasons">
@@ -73,7 +78,7 @@ class EpisodeList extends Component {
                     </div>
 
                 </div>
-                <ListEpisode season={this.state.value} sortType={this.state.sortType}/>
+                <ListEpisode season={this.state.value} sortType={this.state.sortType} order={this.state.order} />
             </section>
         );
     }
