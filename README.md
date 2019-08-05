@@ -21,8 +21,10 @@ The following items listed below are tools and technologies used in this project
 - show description
 - button "official site"
 
+**SeasonButtons** includes:
+- Season selectors
+
 **EpisodeList** includes:
-- Season selector
 - episode image
 - episode name
 - episode description
