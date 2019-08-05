@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import FormatDate from '../functions/formatDate';
 import FormatEpisodeDescription from '../functions/formatEpisodeDescription';
 import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment';
 
 class SingleEpisodeCard extends Component {
     render() {   
@@ -10,7 +10,7 @@ class SingleEpisodeCard extends Component {
                 <div><img src={this.props.episode.image.medium} alt={this.props.episode.name} /></div>
                 <div className="episodeTitle">{this.props.episode.name}</div>
                 <div>{ReactHtmlParser(FormatEpisodeDescription(this.props.episode.summary))}</div>
-                <div className="info">Date: {FormatDate(this.props.episode.airdate)} | Season: {this.props.episode.season} | Episode: {this.props.episode.number}</div>
+                <div className="info">Date: {moment(this.props.episode.airdate).format("DD MMMM YY")} | Season: {this.props.episode.season} | Episode: {this.props.episode.number}</div>
             </a>
         );
     }
