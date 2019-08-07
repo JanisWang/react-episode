@@ -1,4 +1,5 @@
 ## React webpage - List GOT episodes
+[Click here to preview](https://janiswang.github.io/react-episode-list/)
 ### Description
 
 The project aims to create a webpage using React that listing GOT episodes using provided JSON data file. Design details can be found in [Figma](https://www.figma.com/file/cSjahZLzg3qH1fEIOxyK6g/Untitled?node-id=13%3A0 "Figma").
@@ -40,6 +41,9 @@ npm start
 
 # build project locally
 npm run build
+
+# re-deploy project
+npm run deploy
 ```
 By default, project should be able to view in [http://localhost:3000/](http://localhost:3000/). Port number can be update in **package.json**. Add "`PORT={port_number}`" in scripts->start.
 ```json
@@ -50,3 +54,23 @@ By default, project should be able to view in [http://localhost:3000/](http://lo
     "eject": "react-scripts eject"
   }
 ```
+
+To deploy project to GitHub Page, 
+1. In package.json file, add homepage url.
+``` json
+"homepage":"https://yourusername.github.io/repository-name"
+```
+2. Install gh-pages package
+```
+npm install --save gh-pages
+```
+
+3. Add deploy script in package.json
+```json
+"scripts":{
+ "predeploy": "npm run build",
+ "deploy": "gh-pages -d build",
+}
+```
+
+4. In GuiHub setting, set source branch to "gh-pages".
