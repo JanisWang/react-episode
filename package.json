@@ -4,14 +4,14 @@
   "private": true,
   "homepage": "https://janiswang.github.io/react-episode-list/",
   "dependencies": {
-    "gh-pages": "^2.1.0",
+    "gh-pages": "^2.0.1",
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-html-parser": "^2.0.2",
     "react-redux": "^7.1.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
